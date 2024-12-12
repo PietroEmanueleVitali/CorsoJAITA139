@@ -7,7 +7,7 @@ public class App {
         
         String name = "Pietro";
         String secondName = "Emanuele";
-        String surName = "Vitali";
+        String surname = "Vitali";
         String cityOfResidence = "Milan";
         int age = 24;
 
@@ -16,7 +16,7 @@ public class App {
         
 
         System.out.println("Nome: " + name + " "  + secondName);
-        System.out.println("Cognome: "+ surName);
+        System.out.println("Cognome: "+ surname);
         System.out.println("Residenza: "+ cityOfResidence);
         System.out.println("Età: "+ age);
         System.out.println("Altezza: "+ height);
