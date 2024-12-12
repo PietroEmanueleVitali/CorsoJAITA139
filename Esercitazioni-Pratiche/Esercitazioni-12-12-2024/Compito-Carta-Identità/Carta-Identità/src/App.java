@@ -1,6 +1,3 @@
-/*
- * Nel nominare le variabili non si mettono: spazi vuoti, caratteri speciali, non si inizia il nome con un numero, i nomi delle variabili sono lowerCamelCase
- */
 
 public class App {
     public static void main(String[] args) throws Exception {
