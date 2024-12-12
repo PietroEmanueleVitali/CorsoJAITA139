@@ -47,3 +47,6 @@ Simboli per le operazioni:
  * Per utilizzare le variabili float dobbiamo aggiungere una F alla fine del numero (double non ne ha bisogno).
  * Per i numeri interi abbiamo diverse dimensioni per le variabili: byte, short, int, long (sono dal più piccolo al più grande).
  */
+/*
+ * Nel nominare le variabili non si mettono: spazi vuoti, caratteri speciali, non si inizia il nome con un numero, i nomi delle variabili sono lowerCamelCase
+ */
