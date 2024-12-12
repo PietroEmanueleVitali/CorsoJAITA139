@@ -1,0 +1,49 @@
+/*
+ * Concetti appresi a lezione:
+ * Java è un linguaggio di alto livello a tipizzazione statica.
+ * Java è un linguaggio orientato agli oggetti.
+ * Per creare un nuovo progetto: File -> new File -> new Java Project
+ * Il codice per i file con estensione *.java vanno nella cartella "src"
+ * In "bin" finiranno i file compilati
+ * Il nome dei progetti deve essere in UpperCamelCase (Prima lettera di ogni parola sempre maiuscola).
+ * Java è case sensitive (Maiuscole e minuscole creano parole diverse: Ciao è diverso da ciao).
+ * Le variabili sono contenitori per dei tipi specifici di dato.
+ * Le variabili vengono nominate secondo il lowerCamelCase (Solo la prima parola inizia con una minuscola, le parole successive alla prima hanno la prima lettera maiuscola).
+ * I nomi delle variabili devono essere significativi, altrimenti non sarò in grado di ricordarmi cosa contiene.
+ * Le variabili devono sempre essere dichiarate prima del loro utilizzo.
+ * Per dichiarare una variabile devo indicare tipo di dato e nome.
+ * 
+ * int -> dichiaro una variable che conterrà un numero intero.
+ * Tramite il simbolo "=" posso assegnare un valore alla variabile (la iniziallizzo)
+ * Al momento della dichiarazione posso anche inizializzare la variabile (Esempio: int lato = 5; ).
+ * Se assegno un valore ad una variabile quando questa è già stata inizializzata, andrò a sovrascrivere il suo contenuto.
+ * 
+ * L'operatore "+" si può utilizzare per concatenare dei valori. Esempio: System.out.println("Il valore della variabile è: " + nomeVariabile);
+ * Il codice viene eseguito dall'alto verso il basso.
+ * Ricorda sempre di chiudere le parentesi graffe.
+ */
+/*
+Simboli per le operazioni:
+    + per le somme
+    - per le sottrazioni
+    * per le moltiplicazioni
+    / per le divisioni
+    % per il modulo (restituisce il resto della divisione)
+    */
+//viene comunque rispettato l'ordine classico delle operazioni
+/*
+ * Sempre rispettare l'indentazione (sistema per organizzare il codice, si esegue un tab al codice contenuto nelle graffe, così da capire dove è contenuto).
+ */
+/*
+ * Per salvare variabili che contengono del testo usiamo le variabili di tipo String
+ * Il testo da salvare nelle variabili di tipo String devono essere contenuti nei doppi apici: "Hello World!"
+ * Provando ad inserire un numero all'interno di una variabile di tipo String, avrò un errore.
+ * Per salvare i singoli caratteri abbiamo le variabili di tipo char. Queste vogliono gli apici singoli ''
+ * Anche con i char vale la regola del case sensitive, la variabile 'A' sarà diversa dalla variabile 'a'
+ */
+/*
+ * Un altro tipo di variabile è il double, questa ci permette di salvare sia i numeri decimali che gli interi (Ma occupa più memoria e potrebbe generare degli errori per certe variabili. È da usare solo se necessario).`
+ * Per occupare meno memoria è possibile utilizzare il tipo di variabile float (anch`essa permette di salvare numeri interi e decimali).
+ * Per utilizzare le variabili float dobbiamo aggiungere una F alla fine del numero (double non ne ha bisogno).
+ * Per i numeri interi abbiamo diverse dimensioni per le variabili: byte, short, int, long (sono dal più piccolo al più grande).
+ */
