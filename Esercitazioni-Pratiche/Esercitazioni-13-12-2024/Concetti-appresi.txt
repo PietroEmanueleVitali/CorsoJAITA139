@@ -34,3 +34,15 @@
 
     Possiamo anche utilizzare stringa.equals() per comparare due variabili, oppure stringa.equalsIgnoreCase() per comparare due stringhe senza considerare le maiuscole o minuscole
  */
+
+/*
+    Per leggere l'input dell'utente possiamo utilizzare la classe Scanner.
+    Questa deve essere importata affinchè possa funzionare, possiamo farlo con import java.util.Scanner;
+
+    Integer.parseInt(); Serve per la conversione da una stringa ad un numero intero.
+    Possiamo dargli in input (tra le sue parentesi) keyboard.nextLine() che restituisce la stringa da convertire.
+
+    Per comparare due stringhe ricorda sempre di utilizzare stringa.equals, Le stringhe in Java sono dei reference type, non puoi confrontare il valore e basta
+
+    
+ */
