@@ -1,0 +1,36 @@
+/*
+    La selezione è il principio che si occupa di regolare l'esecuzione di determinate istruzioni rispetto ad altre.
+    Per far svolgere un'operazione piuttosto che un'altra serve una condizione.
+    Per porre delle condizioni possiamo usare questi operatori di confronto:
+    > Maggiore
+    >= Maggiore o uguale
+    < Minore
+    <= Minore o uguale
+    == Uguale (ne dobbiamo usare due visto che il singolo simbolo "=" serve per assegnare un valore)
+    ! Negazione (l'opposto)
+    != Diverso da
+
+    Questi operatori permettono di ottenere una risposta con vero o falso.
+
+    Vero o falso sono definiti tramite il tipo di variabile bool (boolean).
+
+    Ci sono anche gli operatori logici AND o OR che permettono di combinare più condizioni tra loro.
+    
+    -> AND serve quando vogliamo che entrambe le condizioni siano rispettate e si utilizza con il simbolo &&
+    -> OR serve quando vogilamo che almeno una delle condizioni sia rispettata e si utilizza con il simbolo ||
+
+    Per definire l'istruzione dobbiamo utilizzare un if(condizione) {...} , esso ci permette di scegliere la strada da seguire
+    Per aggiungere altre strade possiamo utilizzare degli else if (condizione) {...}
+    Se le condizioni dell'if o dell'if else non vengono rispettate, possiamo definire un else {...} che gestirà il flusso il programma in tutti gli altri casi (con la traduzione in italiano è molto facile, if = "se" e else = "altrimenti")
+
+    Gli if possono anche essere annidati tra di loro, questo significa che posso mettere più if all'interno di un altro if.
+    esempio:
+        if (condizione)
+        {
+            if (altracondizione)
+            {...}
+        }
+
+
+    Possiamo anche utilizzare stringa.equals() per comparare due variabili, oppure stringa.equalsIgnoreCase() per comparare due stringhe senza considerare le maiuscole o minuscole
+ */
