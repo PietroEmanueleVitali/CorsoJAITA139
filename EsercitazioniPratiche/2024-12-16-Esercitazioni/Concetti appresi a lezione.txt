@@ -1,0 +1,8 @@
+Tipo di dato boolean. Questo tipo di dato contiene due valori: true o false. Nella definizione di una condizione (es. a > b) avremo come valore di ritorno un boolean.
+/*
+ * Gli if piatti (indipendenti gli uni dagli altri), sono utilizzati quando è necessario verificare ogni condizione presente.
+ * In sequenza gli if piatti possono essere efficaci, ma se una condizione mi permette di saltare le altre, è meglio non farlo.
+ * 
+ * Operatorie ternario: funzione che permette, in base ad una condizione, di aggiornare i valori di una variabile (o settarla).
+ * La sintassi è: condizione ? valoreSeVero : valoreSeFalso;
+ */

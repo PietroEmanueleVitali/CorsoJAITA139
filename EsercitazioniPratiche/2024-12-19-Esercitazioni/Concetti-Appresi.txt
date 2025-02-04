@@ -1,0 +1,6 @@
+/*
+ * Oggi vedremo in aggiunta il ciclo while.
+ * Il ciclo while è molto simile al do{...}while(condizione). 
+ * Ci torna utile quando dobbiamo fare dei cicli solo nella presenza di una determinata condizione.
+ * La sintassi è while(condizione)
+ */
