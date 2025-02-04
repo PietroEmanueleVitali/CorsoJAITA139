@@ -1,0 +1,14 @@
+Perché utilizzare un DB?
+
+Gestire una maggiore mole di dati
+
+Manipolazione dei dati con dei regolamenti strutturati
+
+Gestione di diversi tipi di utenti
+
+MySQL è un RDBMS (Relational database management system).
+
+I DB hanno numerose tipologie di strutture, noi vedremo i DB relazionali.
+Nei DB relazioni tutti i dati sono organizzati in tabelle. Ogni riga è un'entità e ogni colonna è un attributo di tale entità.
+
+Noi non vedremo i DB non relazionali.
