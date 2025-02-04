@@ -1,8 +1,0 @@
-kitkat
-2.0
-oreo
-1.5
-kinder
-2.0
-caffe
-1.0

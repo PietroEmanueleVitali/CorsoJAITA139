@@ -1,2 +1,0 @@
-In questa lezione sono stati aggiunti gli switch.
-La spiegazione ed un esempio del loro utilizzo sono presenti all'interno del codice del progetto "SwitchProject".
