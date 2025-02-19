@@ -1,0 +1,7 @@
+Quando si inseriscono i dati in un db meglio seguire le convenzioni 
+Unix è case sensitive, nello spostamento dei dati potremmo avere dei problemi
+	Convenzioni da seguire:
+		Per ora ho visto solo che si possono modificare le impostazioni
+		In generale, meglio avere degli standard fissi tra le varie strutture, es. snake_case
+
+Oggi abbiamo anche visto le relazioni nei db 1:1 1:N N:N

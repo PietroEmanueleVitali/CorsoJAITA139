@@ -1,0 +1,6 @@
+POSSIBILITÀ DI USARE LE JOIN SULLA STESSA TABELLA
+Devo chiamare la stessa tabella come se fosse due tabelle diverse nel from (come un alias),
+Tratterò la singola tabella come se fossero due tabelle distinte.
+SONO CHIAMATE SELF JOIN.
+
+Ma non sono sintomo di un cattivo design di un db ...?

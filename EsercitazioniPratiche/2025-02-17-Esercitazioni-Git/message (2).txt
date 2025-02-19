@@ -1,0 +1,188 @@
+
+
+
+Creare un nuovo branch (da riga di comando)
+
+Assicurati di essere sul branch principale (solitamente "main" o "master"):
+git checkout main (o git checkout master)
+
+Crea un nuovo branch:
+git branch nome-del-tuo-branch (questo comando crea il branch, ma non ti ci sposta)
+
+Passa al nuovo branch:
+git checkout nome-del-tuo-branch
+oppure, puoi combinare i passaggi 2 e 3 in un unico comando: git checkout -b nome-del-tuo-branch
+
+
+
+
+Creare un nuovo branch (da VS Code)
+
+Clicca sul nome del branch corrente:
+Nella barra di stato in basso a sinistra, vedrai il nome del branch corrente. Cliccaci sopra.
+Crea un nuovo branch:
+Digita il nome del nuovo branch nella casella di testo e premi Invio.
+VS Code creerà e ti sposterà automaticamente sul nuovo branch.
+Unire un branch al branch principale (da riga di comando)
+
+Passa al branch principale:
+git checkout main (o git checkout master)
+Unisci il tuo branch:
+git merge nome-del-tuo-branch
+Risolvi eventuali conflitti:
+Se ci sono conflitti, Git ti avviserà. Dovrai risolverli manualmente,
+ "preparare" (stage) i file risolti e quindi eseguire il commit.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Apri il terminale integrato di VS Code (Visualizza > Terminale o Ctrl + `).
+Digita git branch e premi Invio.
+Questo comando elencherà tutti i branch locali nel tuo repository. Il branch attivo sarà contrassegnato da un asterisco (*).
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Unire un branch al branch principale (da VS Code)
+
+Passa al branch principale:
+Clicca sul nome del branch nella barra di stato e seleziona "main" (o "master").
+Avvia l'unione:
+Nella barra di stato, clicca di nuovo sul nome del branch.
+Scegli "Merge branch...".
+Seleziona il branch che vuoi unire.
+Risolvi eventuali conflitti:
+VS Code ti mostrerà i conflitti nell'editor. Risolvili, "prepara" i file e esegui il commit.
+Elimina il branch (opzionale):
+Una volta unito il branch, puoi eliminarlo dal pannello del controllo sorgente.
+ 
+ 
+ 
+
+Rimani aggiornato con il branch principale (eseguendo git pull) prima di unire il tuo branch.
+Prima di eseguire il merge nel branch principale, è buona norma creare una "Pull request" in servizi come GitHub o Gitlab, in modo da poter revisionare il codice.
+
+
+
+
+
+
+
+Eliminare un branch locale:
+
+Verifica di essere sul branch corretto:
+Prima di eliminare un branch, assicurati di non essere sul branch che vuoi eliminare. Passa a un altro branch usando il comando git checkout <nome-altro-branch>.
+Elimina il branch:
+Usa il comando git branch -d <nome-branch> per eliminare un branch locale.
+Il flag -d (o --delete) elimina il branch solo se è già stato unito al branch corrente.
+Se vuoi forzare l'eliminazione di un branch anche se non è stato unito, usa il comando git branch -D <nome-branch>.
+il flag -D (forza la cancellazione) è utile quando si vuole eliminare un branch con modifiche non unite.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Quando si uniscono due branch in Git, possono verificarsi conflitti se le stesse righe di codice sono state modificate in modo diverso in entrambi i branch. Ecco come risolverli:
+
+1. Identificare i conflitti
+
+Git segnala i conflitti:
+Quando esegui git merge, Git ti avviserà se ci sono conflitti e ti dirà quali file sono interessati.
+VS Code mostrerà anche i file con conflitti nel pannello del controllo sorgente.
+Marcatori di conflitto:
+I file con conflitti conterranno marcatori speciali che indicano le modifiche in conflitto. Questi marcatori sono:
+<<<<<<< HEAD: Indica l'inizio delle modifiche nel branch corrente.
+=======: Separa le modifiche nel branch corrente dalle modifiche nel branch che stai unendo.
+>>>>>>> nome-del-branch: Indica la fine delle modifiche nel branch che stai unendo.
+
+
+
+
+
+
+
+
+
+
+
+2. Risolvere i conflitti manualmente
+
+Apri il file in conflitto:
+Apri il file nell'editor di VS Code.
+
+
+
+
+Modifica il file:
+Esamina le modifiche in conflitto tra i marcatori.
+Decidi quali modifiche mantenere.
+Modifica il file per includere le modifiche desiderate.
+Rimuovi i marcatori di conflitto.
+Salva il file:
+Salva il file dopo aver risolto i conflitti.
+
+
+
+
+
+3. "Preparare" i file risolti
+
+Usa git add:
+Dopo aver risolto i conflitti, usa il comando git add nome-del-file per "preparare" i file risolti.
+In VS Code, puoi cliccare sul pulsante "+" accanto al nome del file nel pannello del controllo sorgente.
+
+
+
+
+
+
+. Eseguire il commit
+
+Completa il merge:
+Dopo aver "preparato" tutti i file risolti, esegui il comando git commit per completare il merge.
+Git creerà automaticamente un messaggio di commit di merge.
+In VS Code, clicca sul simbolo di spunta che si trova nel pannello del controllo sorgente.
+
+
+
+
+
+
+Fare un backup di un branch in Git è una pratica prudente, specialmente prima di eseguire operazioni potenzialmente rischiose come il merge o il rebase. Ecco diverse strategie che puoi adottare:
+
+1. Creare un nuovo branch di backup (opzione consigliata)
+
+Questo è il metodo più semplice e sicuro.
+Esegui questi comandi:
+git checkout nome-del-tuo-branch (assicurati di essere sul branch che vuoi salvare)
+git branch nome-del-tuo-branch-backup (crea un nuovo branch identico)
+Ora hai una copia esatta del tuo branch originale. Se qualcosa va storto, puoi sempre tornare al branch di backup.

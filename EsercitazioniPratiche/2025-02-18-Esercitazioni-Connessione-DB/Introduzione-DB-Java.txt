@@ -1,0 +1,12 @@
+Dependency
+--> Gli aggregatori dipendono, per il loro funzionamento, dalla classe che devono aggregare.
+--> Il Main dipende dalle classe che dobbiamo utilizzare per mostrare i dati o interagire coi dati(in questo caso l'aggregatore).
+
+Abbiamo i DAO, Data Access Object. Questi si occupano delle operazioni CRUD (Create, Read, Update, Delete).
+L'interfaccia implementata dal DAO, deve avere la firma dei metodi per le operazioni di CRUD.
+
+Prepared statement controlla tutti i dati richiesti al db.
+
+(ORM) Object-Relational Mapping --> Tradurre le tabelle del DB in classi
+
+ 

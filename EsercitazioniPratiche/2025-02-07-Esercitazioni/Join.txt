@@ -1,0 +1,13 @@
+Per le join implicite, dobbiamo andare ad eguagliare chiavi primarie con chiavi esterne, non possiamo farlo a cazzo di cane.
+
+Le inner join ci permettono di filtrare via le entità con dentro dei risultati null.
+
+
+abbiamo anche le outer join, che ci permettono di unire tabelle che non sono collegate fra loro (left, right e full).
+
+LEFT JOIN --> prendiamo in considerazione tutti i record della tabella di sinistra e solo quelli collegati della tabella di destra.
+
+BISOGNA DOCUMENTARSI UN PO MEGLIO SULLE JOIN E FAR PRATICA NELL'UTILIZZO DELLE FUNZIONI SCALARI E DI RAGGRUPPAMENTO
+
+FULL JOIN IN MYSQL NON ESISTE
+PER OTTENERLA DOBBIAMO USARE UNA LEFT JOIN ED UNA RIGHT JOIN INSIEME E UNIRLE TRAMITE UNION

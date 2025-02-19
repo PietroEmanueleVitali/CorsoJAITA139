@@ -1,0 +1,42 @@
+DCL (DATA CONTROL LANGUAGE)
+Servono per utilizzare un particolare DB o mostrare i metadati
+	USE, SHOW 
+
+Funzioni scalari (applicate a tutti gli elementi)
+	es. SELECT DISTINCT nomeColonna FROM nomeTabella 
+
+
+Funzioni di gruppo
+	Svolgere operazioni su intere colonne di un dato (avrò una sola riga di risposta)
+	
+	SUM (colonna) -- deve contenere dei valori numerici
+	Esempio di utilizzo di SUM
+		SELECT SUM(prezzo) somma_prezzi FROM vini
+		--> somma_prezzi diventa il nome della colonna del risultato
+Esiste un modo per aggregare i risultati (esempio il prezzo per i singoli paesi)
+	GROUP BY nomeColonna
+
+Esempio di utilizzo
+	Select round(SUM(prezzo), 2) somma_prezzi, country
+	FROM vini
+	GROUP BY country;
+
+	AVG(nomeColonna) -- ottengo la media dei valori
+
+	MIN(nomeColonna) -- ottengo il valore minimo (posso sempre raggruppare per gruppi)
+	Max(nomeColonna) -- ottengo il valore masssimo (della tabella o per un dato gruppo)
+	COUNT(colonna) -- conto quante righe ci sono in una tabella (raggruppo per condizioni)
+			   Se la colonna dovesse avere dei null, questi non vengono contati
+
+-- Quando delle colonne hanno un nome con degli spazi, allora dovrò usare gli apici inversi per richiamarli
+
+	HAVING -- Permette di porre delle condizioni al risultato del group by
+	ORDER BY -- Permette di ordinare secondo un ordine ascendente o decrescente
+ 
+Ricorda sempre che l'ordine è importante -->
+	
+	select -> From -> where -> group by -> having -> order
+
+Abbiamo visto le chiavi esterne e le relazioni 1 : N
+
+

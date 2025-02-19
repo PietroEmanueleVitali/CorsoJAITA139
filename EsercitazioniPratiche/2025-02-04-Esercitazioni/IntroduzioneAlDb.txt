@@ -1,0 +1,107 @@
+Perché utilizzare un DB?
+
+Gestire una maggiore mole di dati
+
+Manipolazione dei dati con dei regolamenti strutturati
+
+Gestione di diversi tipi di utenti
+
+MySQL è un RDBMS (Relational database management system).
+
+I DB hanno numerose tipologie di strutture, noi vedremo i DB relazionali.
+Nei DB relazioni tutti i dati sono organizzati in tabelle. Ogni riga è un'entità e ogni colonna è un attributo di tale entità.
+
+Noi non vedremo i DB non relazionali.
+
+In SQL i commenti vengono fatti in due modi
+	-- Per la Singola riga (ricorda lo spazio)
+	/*Più 
+	righe*/
+
+Possiamo usare diverse parole chiave per dare i comandi per la gestione dei dati.
+SQL non è case sensisitive, ma per convenzione le parole chiave vengono messe in maiuscolo
+
+SQL legge un singolo comando alla volta, il punto e virgola serve solo per definire i diversi comandi
+Nessuno ci vieta di usare un file per ogni comando.
+SQL è un linguaggio dichiarativo e non procedurale.
+
+Comandi DDL (Gestione dei meta-dati)(DATA DEFINITION LANGUAGE)
+---> CREATE DATABASE nomeDelDataBase    (Permette di creare il db)
+---> USE NomeDelDataBase		(Permette di selezionare lo schema con cui voglio lavorare, il nome dello schema sarà in grassetto)(Si può fare anche col doppio click)
+
+CREATE TABLE nomeTabella(
+	username VARCHAR(20),
+	password VARCHAR(20) -- password è un tipo di dato di SQL... ?
+)
+
+-- L'inserimento dei dati (come anche la loro modifica e cancellazione) sono definite come DML (DATA MANIPULATION LANGUAGE) 
+
+Modo 1 per inserire dei dati:
+---> INSERT INTO nomeTabella values ("username1", "password");
+
+-- Secondo metodo per inserire dei dati nella tabella
+
+INSERT INTO utenti (username) values ("Giovanni"); -- posso definire nello specifico cosa inserire (i dati devono essere nell'ordine corretto).
+
+-- Per la lettura dei dati abbiamo il linguaggio DQL (DATA QUERY LANGUAGE)
+SELECT 				* -- quali dati voglio vedere (le colonne, in questo caso tutte)
+FROM utenti 			-- dove voglio che li prenda (da quale tabella)
+WHERE username = 'Giovanni';  	-- filtro con cui voglio selezionare (in questo caso dove il nome equivale a giovanni)
+
+
+Tra le operazioni di DDL abbiamo anche 
+---> ALTER TABLE utenti RENAME COLUMN username to usernames; -- rinomino la colonna in un modo diverso (posso farlo anche per le colonne);
+
+--> ALTER TABLE utenti CHANGE COLUMN password pass int; -- cambio il nome ed il tipo di dato
+
+--> ALTER TABLE utenti ADD COLUMN email VARCHAR(25); -- aggiungo una colonna
+
+--> ALTER TABLE utenti ADD dateOfBirth date; -- il formato di date è anno-mese-giorno
+
+--> ALTER TABLE utenti DROP COLUMN dateofbirth; -- eliminare una colonna
+
+-- modificare un dato nella tabella
+-- stiamo usando una modalità di sicurezza che non permette i cambiamenti senza delle chiavi primarie nelle tabelle e nella richiesta
+--> UPDATE utenti SET password = "pass" WHERE usernames = 'Giovanni'; -- Questo non funzionerebbe
+--Cancellare una riga in una tabella
+--> DELETE FROM utenti WHERE username = "Giovanni";
+
+Aggiungere una chiave primaria ad una tabella -- Per adesso lo stiamo facendo manualmente... ?
+--> La chiave primaria deve essere univoca e non nulla 
+-- constraint (aggiunge un vincolo) (NOT NULL, UNIQUE)
+
+--> CREATE TABLE libri (
+	id int primary key auto_increment, -- si può anche mettere come tipo il Serial ed i constraints che voglio
+ 	prezzo double (7,2), -- 7 numeri prima della virgola e massimo due dopo la virgola, oppure posso usare direttamente il decimal (Più preciso, si evitano gli arrotondamenti il più possibile)
+	-- esistono anche i boolean, 0 per false e 1 per true,
+	
+	):
+
+
+ALTER TABLE utenti ADD column id int first; -- il FIRST serve a definire dove mettere la colonna
+
+mockaroo per creare dei dati fittizi (ti crea il csv da utilizzare);
+
+-- per eliminare solo i dati della tabella: 
+---> TRUNCATE TABLE nomeTabella;
+
+
+Utilizzo del WHERE
+Abbiamo diverse opzioni:
+--> BETWEEN 10 AND 30
+--> AND
+--> OR
+-->    > < >= <=
+--> LIKE (che contiene un dato pattern) ("%pattern" -> inizia con un dato pattern, il simbolo % lo posso mettere anche ai lati o dopo, indica che il resto può essere qualsiasi cosa)
+--> _ -> non conosco quella data lettera in una certa posizione
+--> IN(); -> permette di definire un elenco di opzioni (equivale a concatenare una serie di OR)
+
+FUNZIONI SCALARI (funzioni che vengono eseguite riga per riga)
+---> SELECET CONCAT (colonna1, "stringa che desidero", colonna2...) as "nome della colonna generata"; --> selezione customizzata di certe colonne
+	Non è più necessario utilizzare as, basta scrivere il nome subito dopo la funzione (anche senza gli apici, ma in quel caso non posso usare gli spazi)
+---> per le date abbiamo le varie funzioni per i vari formati es. year();
+---> CASE
+	WHEN nPagine < 10 THEN "volavia"
+	WHEN nPagine > 10 THEN "vieniqua"
+	ELsE "Valore troppo giusto"
+     END nomePerLaColonnaGenerata

@@ -1,0 +1,33 @@
+Non possiamo eliminare i valori di una tabella con un vincolo (con delle chiavi esterne associate alla sua chiave primaria).
+
+Cosa facciamo in questi casi? 
+Nella creazione della chiave esterna, dobbiamo indicare cosa avviene quando viene cancellata la chiave primaria di riferimento.
+Es.
+	--> FOREIGN KEY(colonna) REFERENCE tabella(colonna) ON DELETE SET NULL 
+In questo caso verrebbe settata a null nella cancellazione.
+
+Cosa avviene in aggiornamento?
+	--> FOREIGN KEY(colonna) REFERENCE tabella(colonna) ON UPDATE CASCADE
+In questo caso, se aggiorno la chiave primaria verrà aggiornata anche la chiave esterna.
+
+
+In default abbiamo ACTION/RESTRICT e non è possibile aggiornare la tabella connessa.
+Questi si chiamano vincoli di integrità referenziale.
+
+Le INNER JOIN sono un prodotto cartesiano con un filtro (ON), è come fare una cross join e poi aggiungere delle condizioni.
+
+Sono tutte cross join? Pare di si
+
+ABBIAMO DUE NUOVI STRUMENTI MOLTO COMODI
+
+IL PRIMO:
+	CREATE VIEW nome_view AS
+	SELECT ... etc
+
+IL SECONDO
+	WITH nome_alias AS (
+	SELECT ... etc
+	)
+
+	
+

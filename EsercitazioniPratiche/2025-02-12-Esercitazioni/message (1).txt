@@ -1,0 +1,370 @@
+
+
+
+
+
+create database esempio_scuola;
+use esempio_scuola;
+
+drop database esempio_scuola;
+
+
+create table PERSONE(
+idPersone int primary key auto_increment,
+nome varchar(50),
+cognome varchar(50),
+dataNascita date
+);
+
+
+insert into PERSONE (nome, cognome, dataNascita) values ('Frank', 'Matano', '1966-09-08');
+insert into PERSONE (nome, cognome, dataNascita) values ('Eddy', 'androletti', '1990-04-04');
+insert into PERSONE (nome, cognome, dataNascita) values ('Adelle', 'Mate', '1982-04-29');
+insert into PERSONE (nome, cognome, dataNascita) values ('Caty', 'Leer', '1951-01-02');
+insert into PERSONE (nome, cognome, dataNascita) values ('Mauro', 'Merola', '1981-08-31');
+insert into PERSONE (nome, cognome, dataNascita) values ('Lenard', 'Jagger', '1959-12-01');
+insert into PERSONE (nome, cognome, dataNascita) values ('Mei', 'Heart', '1965-05-11');
+insert into PERSONE (nome, cognome, dataNascita) values ('Maccio', 'Capatonda', '1970-09-15');
+
+
+
+select * from PERSONE;
+
+
+-- I reugger sono procedure automatiche che vengono eseguite precedentemente o a seguito di un evento di alterazione
+-- dei dati di una tabella, assia:
+-- BEFORE INSERT  o  AFTER INSERT
+-- BEFORE UPDATE  o  AFTER UPDATE
+-- BEFORE DELETE  o  AFTER DELETE
+
+-- I trigger hanno lo scopo di verificare i dati in ingresso al database, in un determinato
+-- evento riconducibile ad una determinata tabella.
+-- Il trigger  può essere attivato a seconda di due diverse casistiche: FOR EACH ROW oppure FOR EACH STATEMENT.
+
+-- FOR EACH ROW: indica che il trigger viene attivato per ciascuna riga che viene inserita, modificata
+-- oppure cancellata, nel database.
+-- FOR EACH STATEMENT: indica che l'attivazione avviene a ciascuna operazione, per cui se stiamo
+-- wffwttuando operazioni multiple verrà eseguito sull'intera istruzione, quindi in modo aggregato,
+-- ad esempio verificando il numero di inserimenti, modifiche o cancellazioni che sono state eseguite
+-- in totale.
+
+-- I dati da xontrollare vengono passati al trigger direttamente dall'evento stesso, oppure
+-- sono accessibili direttamente dalla tabella stessa.
+-- Per accedere  ai dati si utilizzano due parole chiave:
+--  NEW o OLD
+
+
+-- NEW deve essere utilizzato scrivendo    new.nomecolonna
+-- ha il compito di identificare il valore esterno che si associa alla specifica colonna indicata,
+-- quindi nel caso di 'insert' o 'update', per esempio sarà possibile scrivere  'new.nome' è questo
+-- permette di accedere al valore che si vuole inserire nella colonna nome
+
+-- Mentre nel caso di 'OLD', bisonga sempre scrivere 'old.nomecolonna'.
+-- Con OLD si identifica i valori già presenti all'interno dalla tabella di interesse.
+-- Quindi se nella tabella esiste un record con l'id 1, se si scrive 'old.id' si accederà al valore 1.
+
+
+-- NEW può essere utilizzato sia nel caso di insert o di update, MA NON PER DELETE, mentre
+-- OLD può essere utilizzato nel caso di UPDATE(per eventuali controlli dai dati già presenti
+-- rispetto ai nuovi)
+-- Nel caso di DELETE invece la parola chiave NEW NON puo può essere utilizzata, perchè in questo 
+-- caso di cerca di andare a cancellare qualcosa di già esistente nel database, per cui anche se stiamo
+-- inserendo as esempio l'id di cancellazione non è un dato di interesse per il trigger
+-- Come del resto non ha senso l'utilizzo della parola chiave 'old' nel caso di 'insert', 
+-- perchè non esistono ancora i riferimenti del database a cui appogiarsi
+
+
+-- Nel caso di un ''before insert, il programmatore potrebbe scrivere del codice per controllare
+--  che la tipologia dei dati in ingresso corrisponda a quella richiesta, e che i valori abbiano
+-- una corrispondenza con delle precise caratteristiche
+-- Se stiamo facendo l'inserimento dai dati di una persona, il suo nome e cognomr dovranno essere
+-- obbligatori e non potranno essere uguali.
+-- Inoltre vorrremo poter effettuare questo controllo per ciascuna riga che vogliamo inserire.
+
+
+
+-- trigger inserimento persona
+DELIMITER //
+CREATE TRIGGER controllo_nome_persona_BEFORE_INSERT
+BEFORE INSERT ON persone    -- prima dell'inserimento
+FOR EACH ROW   -- controlla per ogni riga
+BEGIN
+
+	IF NEW.nome IS NULL OR NEW.nome = '' THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Errore: il campo "nome" non può essere vuoto';
+
+	END IF;
+
+END //
+
+
+DELIMITER ;
+
+-- per droppare un trigger
+DROP TRIGGER controllo_nome_persona_BEFORE_INSERT;
+
+-- non funziona, non possiamo inserire una persona senza nome
+insert into PERSONE (nome, cognome, dataNascita) values ('','Capatonda', '1970-09-15');
+
+
+
+
+DELIMITER //
+
+CREATE TRIGGER controllo_nome_numeri_BEFORE_UPDATE
+BEFORE UPDATE ON persone
+FOR EACH ROW
+BEGIN
+
+	IF NEW.nome REGEXP '[0-9]' THEN
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'Il nome non può contenere numeri.';
+    END IF;
+
+
+END //
+
+DELIMITER ;
+
+ -- REGEXP permette di effettuare ricerche  complesse all'interno di stringhe usando le espressioni regolari
+ -- Di solito si usa nel 'where' per filtrare le ricerche
+ -- Im questo caso gli dico che se contiene numero dallo zero al nove il nome, deve dare errore in caso di update
+ 
+ 
+ -- non funziona perchè il nome contiene dei numeri
+ UPDATE PERSONE set nome = 'Marc102545'
+ where idPersone = 1;
+
+
+
+
+
+
+
+-- creiamo una nuova tabella dove andremo a registrare gli 
+-- id delle persone eliminate usando un trigger che si attiva
+-- dopo l'eliminazione
+
+create table LOG_ELIMINAZIONI(
+id_log int primary key auto_increment,
+idPersone int,      -- corrisponde all'id della tabella Persone
+nome varchar(255),
+cognome varchar(255),
+data_eliminazione TIMESTAMP
+);
+
+select * from LOG_ELIMINAZIONI;
+
+
+
+
+DELIMITER //
+
+CREATE TRIGGER log_EliminaPersone_AFTER_DELETE
+AFTER DELETE ON PERSONE
+FOR EACH ROW
+BEGIN
+
+INSERT INTO LOG_ELIMINAZIONI (idPersone, nome, cognome, data_eliminazione)
+VALUES (OLD.idPersone, OLD.nome, OLD.cognome, NOW());
+
+END //
+
+
+DELIMITER ;
+
+drop trigger log_EliminaPersone_AFTER_DELETE;
+
+
+-- in un trigger DELETE, puoi utilizzare la parola chiave OLD per 
+-- accedere ai valori delle colonne della riga prima dell'eliminazione
+
+-- prova di cancellazione
+delete from PERSONE
+where idPersone = 1;
+
+
+delete from PERSONE
+where idPersone = 2;
+
+-- per annullare l'integrità referenziale
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- per ripristinare l'integrità
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+
+
+
+
+
+
+
+-- RELAZIONE 1 A 1 CON LA TABELLA PERSONE
+create table STUDENTI(
+idStudenti int primary key,
+anno int,
+sezione varchar(50),
+foreign key(idStudenti)
+references PERSONE(idPersone)
+);
+
+
+insert into STUDENTI (idStudenti, anno, sezione) values(1, 3, 'E');
+insert into STUDENTI (idStudenti, anno, sezione) values(2, 1, 'A');
+insert into STUDENTI (idStudenti, anno, sezione) values(7, 5, 'C');
+insert into STUDENTI (idStudenti, anno, sezione) values(8, 4, 'E');
+
+
+select * from STUDENTI;
+
+select * from PERSONE, STUDENTI where idPersone = idStudenti;
+
+
+select * from PERSONE as p, STUDENTI as s where p.idPersone = s.idStudenti;
+
+
+
+create table DOCENTI(
+idDocenti int primary key,
+materia varchar(50),
+anniExp int,
+foreign key(idDocenti)
+references PERSONE(idPersone)
+);
+
+
+
+
+ insert into DOCENTI (idDocenti, materia, anniExp)
+ value
+ (3, 'Geografia', 35),
+ (4, 'Musica', 48),
+ (5, 'Italiano', 20),
+ (6, 'Storia', 29);
+
+select * from DOCENTI;
+
+-- inserire nuova colonna per lo stipendio
+alter table DOCENTI add column stipendio int;
+
+-- aggiunta di nuovi dati nella colonna appena creata 
+-- sulla tabella DOCENTI
+update DOCENTI set stipendio = 1500 where idDocenti = 3;
+update DOCENTI set stipendio = 1759 where idDocenti = 4;
+update DOCENTI set stipendio = 1900 where idDocenti = 5;
+update DOCENTI set stipendio = 1120 where idDocenti = 6;
+
+
+select * FROM DOCENTI;
+
+
+-- Proviamo a costruire una funzione per il calcolo dello stipendio annuo
+-- di un docente inserendo in input un numero
+-- Le function contengono al loro interno formule di uso comune, o regole di business intellegence che 
+-- vengono utilizzate a più riprese da varie logiche, come potrebbe essere la funzione di gruppo AVG().
+-- Essendo che molte volte le sole funzioni di base non ci bastano, possiamo andare
+-- a crearci delle funzioni personalizzate.
+
+
+
+
+
+
+DELIMITER //
+
+CREATE FUNCTION CalcoloStipendioAnnuo(stipendio INT) -- definisce la funzione che accetta un parametro
+RETURNS INT DETERMINISTIC   -- ritorna un risultato di tipo int, un calcolo che non cambia a seconda degli input forniti, eseguirà la stessa operazione
+BEGIN
+
+DECLARE stipendio_annuo INT;  -- dichiarazione di una variabile locale
+SET stipendio_annuo = stipendio * 12; -- calcolo dello stipendio annuo
+RETURN stipendio_annuo;  -- restituisce il risultato
+
+
+END //
+
+DELIMITER ;   -- ripristina il delimitatore, lo spazio tra la parola e il punto e virgola è IMPORTANTE
+
+
+
+SELECT idDocenti, stipendio, CalcoloStipendioAnnuo(stipendio) AS stipendio_annuo
+FROM DOCENTI
+WHERE idDocenti = 5;
+
+
+select CalcoloStipendioAnnuo(1);
+
+SELECT idDocenti, stipendio * 12 AS stipendio_annuo
+FROM DOCENTI;
+
+
+-- STORE PROCEDURE
+-- Le procedure sono funzioni che possono effettuare operazioni di calcolo
+-- o di verifica che non restituiscono un risultato
+
+DELIMITER //
+-- IN serve per passare il parametro alla store procedure, in questo caso gli passiamo l'id delle PERSONE
+CREATE PROCEDURE GetInfoPersona(IN idPersone INT)
+BEGIN
+
+SELECT p.nome, p.cognome, p.dataNascita, d.materia, d.stipendio
+FROM PERSONE p
+LEFT JOIN DOCENTI d ON p.idPersone = d.idDocenti
+WHERE p.idPersone = idPersone;
+
+END //
+
+DELIMITER ;
+
+-- la chiamata della nostra STORE PROCEDURE, invece 
+-- di fare sempre una query da capo, possiamo vedere il dettaglio
+-- della parsone passandogli un ID, mostrandoci i valori
+CALL GetInfoPersona(6);
+
+
+NOTA: LE FUNCTION e le STORE PROCEDURE POSSONO ESSERE 
+-- RIUTILIZZATE DA ALTRE TABELLA, i trigger INVECE NO.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+select nome,cognome,sezione, anno from STUDENTI, PERSONE where idStudenti = idPersone;
+
+
+select * from DOCENTI, PERSONE where idDocenti = idPersone;
+
+select * from PERSONE, DOCENTI where idDocenti = idPersone and anniExp < 30;
+
+
+select *  from PERSONE, STUDENTI where STUDENTI.anno = 5;
+
+
+
+select nome, cognome, dataNascita from PERSONE where year(dataNascita) > 1980;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
