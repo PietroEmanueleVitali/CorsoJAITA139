@@ -1,0 +1,66 @@
+CREATE DATABASE dispenser;
+
+USE dispenser;
+
+CREATE TABLE can (
+	can_id INT AUTO_INCREMENT,
+    name VARCHAR(20),
+    PRIMARY KEY(can_id)
+);
+
+CREATE TABLE ingredient (
+	ingredient_id INT AUTO_INCREMENT,
+    name VARCHAR(20),
+    PRIMARY KEY(ingredient_id)
+);
+
+CREATE TABLE can_ingredient (
+	can_ingredient_id INT AUTO_INCREMENT,
+    can_id INT,
+    ingredient_id INT,
+    quantity INT,
+    PRIMARY KEY (can_ingredient_id),
+    FOREIGN KEY (can_id) REFERENCES can(can_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (ingredient_id) REFERENCES ingredient(ingredient_id) ON DELETE CASCADE ON UPDATE CASCADE   
+);
+
+INSERT INTO can (name) 
+VALUES 
+('Cocacola'),
+('Fanta'),
+('Sprite'),
+('SANBENEDETTO'),
+('GUIZZA'),
+('PELLEGRINO'),
+('VODKA');
+
+INSERT INTO ingredient (name)
+VALUES
+('erbe'),
+('Menta'),
+('Anice'),
+('Coloranti'),
+('Acqua'),
+('Acquetta'),
+('Curry');
+
+INSERT INTO can_ingredient (can_id, ingredient_id, quantity)
+VALUES
+(1,1,4),
+(1,2,5),
+(3,2,1),
+(4,2,1),
+(2,5,2),
+(6,2,1),
+(7,6,1),
+(3,3,1);
+
+SELECT can.name, ingredient.name, can_ingredient.quantity
+FROM can LEFT JOIN can_ingredient ON can.can_id=can_ingredient.can_id
+LEFT JOIN ingredient ON ingredient.ingredient_id=can_ingredient.ingredient_id
+ORDER BY can.name;
+
+SELECT DISTINCT can.name, ingredient.name
+FROM can LEFT JOIN can_ingredient ON can.can_id=can_ingredient.can_id
+LEFT JOIN ingredient ON ingredient.ingredient_id=can_ingredient.ingredient_id
+ORDER BY can.name;
