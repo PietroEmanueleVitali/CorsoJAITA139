@@ -1,0 +1,16 @@
+Continuazione progetto Music
+
+Design Pattern
+
+--> Creazionali 
+Singleton: Evitare di generare più instanze dello stesso oggetto, esempio per la creazione della connessinoe al DB
+	   rendiamo staica la proprietà Database così da poterla passare direttamente).
+	   Per la creazione di singleton, dobbiamo usare la parola chiave synchronized in modo tale che non possano arrivare due chiamate simultanee.
+Factory: Sempre un pattern creazionale, serve per costruire una serie di oggetti.
+	--> Centralizza la creazione di oggetti, li restituisce ogni volta che ti servono.
+	--> In model potremmo aggiungere una factory, è una vera e propria classe in cui si creano certi tipi di oggetti.
+	--> Nell'esempio del progetto Music, il Dao non farà più riferimento agli oggetti del model ma alla factory con dentro tutti gli oggetti.
+	--> 
+
+--> Comportamentali
+--> Strutturali

@@ -1,0 +1,16 @@
+
+
+
+
+
+Reflection
+
+La reflection è un modo per gestire più classi che implementano la stessa interfaccia,
+così posso chiamarle allo stesso modo senza il minimo problema e crearne istanze senza farlo singolarmente.
+
+Così poi creo una classe che si occupa di gestire tutte le classi che implementano quella data interfaccia
+e richiamo la singola classe per svolgere tutte le operazioni.
+
+Come trasformiamo i dati di una mappa in un oggetto?
+	Creiamo un metodo che si occupa del mapping
+	

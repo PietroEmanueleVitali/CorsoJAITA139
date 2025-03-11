@@ -1,0 +1,260 @@
+
+
+<!-- Javascript è un linguaggio di scripting di alto livello orientato agli oggetti  e agli aventi -->
+ <!-- E un linguaggio di programmazione interpretato -->
+  <!-- Basato su eventi; permette di reagire agli eventi dell'utente, come click, movimenti del mouse o pressione dei tasti -->
+   <!-- Un linguaggio interpretato è un linguaggio di programmazione il cui codice viene eseguito
+    direttamente da un interprete, riga per riga, senza bisogno di una fase di compilazione preventiva -->
+    <!-- Quando scrivi un file .js e lo esegui in un browser o con Node.js -->
+    <!-- l'interprete legge ed esegue il codice direttamente, senza creare un file eseguibile -->
+
+
+    <!-- DIFFERENZE TRA JAVA E JAVASCRIPT -->
+     <!-- Java in realtà è un linguaggio compilato ed interpretato
+      Il codice Java viene compilato in bytecode(.class)
+      dalla Javac (java compiler) e poi interpretato dalla JVM (java virtual machine),
+     che lo converte in instruzioni eseguibili dal sistema operativo. -->
+
+     <!-- Javascript -> viene interpretato riga per riga direttamente.
+      Java -> viene compilato e poi interpretato.
+      Questa differenza ha un impatto su performance e portabilità:
+      Javascript e più flessibile, ma meno performante per operazione complesse.
+      Java è puù veloce e strutturato, ma richiede più risorse -->
+
+      <!-- E utilizzato per creare le cosidette paginr web dinamiche, e migliorano
+       l'interazione con l'utente, la modificabilità dei contenuti è il modo
+       in cui essi appaiono.
+       Per esempio, quando dobbiamo inserire dei dati di registrazione all'interno
+       di un form di una pagina web(ci basta pensare ad una iscrizione ad un sito o ad una mail).
+       Oppure il controllo sempre sulla parte di inserimento, dove se non vengono inseriti
+       tutti i caratteri obbligatori puù segnalare un errore.
+       
+       Multipiattaforma: javascript è eseguibile su qualsiasi sistema operativo e browser moderno.
+       
+       JS può essere usato anche per realizzare applicazioni al di fuori del browser, anche 
+       per dispositivi mobile.
+       JS è talmente utilizzato che tutte le maggiori aziende che offrono servizi WEB lo utilizzano-->
+
+
+
+       <!-- E debolmente tipizzato
+        Dinamico: in JS non è necesssario dichiarare esplicitamente il tipo di una variabile.
+        Il tipo viene assegnato in fase di esecuzione e può cambiare:
+        
+        var valore = 42;    valore numerico
+        valore = 'Ciao';     ora valore di stringa
+        
+        Debole: Le conversioni tra tipi (o coercizioni)
+        avvengono in modo automatico in molte situazioni,
+        il che può portare a comportamenti inaspettati
+
+
+
+
+        HTML significa Hyper Text Markup Language (linguaggio di marcatura per ipertesti).
+        E un linguaggio standard utilizzato per creare pagine web
+
+
+        COSA FA HTML?
+        Html struttura il contenuto di una pagina web utilizzando ''tag'' che definiscono elementi come:
+
+        testo (<p>, <h1>, <h2>, ecc)
+            immagini (<img>)
+            link (<a>)
+            tabelle (<table>)
+            Form(<form>)
+            liste(<ul> <li>)
+                E molto altro...    
+
+        -->
+
+        <!-- Questo e un commento in HTML -->
+
+<!-- il tag html contiene tutti gli elementi della pagina -->
+        <hmtl>
+<!-- head contiene informazioni meta (charset,titolo,collegamenti a CSS e script, ecc) -->
+            <head>
+
+                <title>GEOMETRIA JS</title>
+            </head>
+
+            <!-- Il body contiene tutto il contenuto visibile della pagina, come testo, immagini e link -->
+            <body>
+<!-- h1 indica il titolo più importante e più grande, ce ne sono 6 in tutto -->
+                <h1>GEOMETRIA JAVASCRIPT</h1>
+
+<!-- il tag form in html serve per creare moduli che permettono agli utenti di inserire dati
+ e inviarli a un server
+ Funzioni principali del form:
+ raccolata dati -> permette di inserire testi, numero, email, password ecc
+ invio dati a un server -> tramite l'attributo action
+ Iterazioni con JS -> può essere usato senza invio, solo per organizzare input gestiti dda JS. -->
+                <form>
+
+                    <!-- table crea una tabella. -->
+                     <!-- tr: aggiunge una riga -->
+                      <!-- td: aggiunge una cella con dati -->
+                    <table>
+                        <tr>
+                            <!-- Il tag <td colspan="2"> è utilizzato all'interno di
+                                una tabella per unire (fondere) due celle in una solo.
+                                In questo cas, il contenuto "RETTANGOLO" occuperà due colonne
+                                nella stessa riga -->
+                            <td colspan="2">
+                                RETTANGOLO
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                BASE
+                            </td>
+                            <td>
+                                <!-- onFocus -> quando l'utente clicca nel campo,
+                                 viene stampato un messaggio nella console del browser -->
+                                 <!-- onBlur -> quando l'utente esce dal campo -->
+
+                                <input type="text" id="base"
+                                placeholder="BASE RETTANGOLO"
+                                onfocus="console.log('Sei entrato nella casella base')";
+                                onBlur="if(this.value.length < 1)
+                                {
+                                    alert('Hai inserito un valore non valido');
+                                    this.value = '1';
+                                }
+                                console.log('Base: ' + this.value);
+                                console.log('Hai lasciato la casella base');";
+                              >  
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                ALTEZZA
+                            </td>
+                            <td>
+                                <input type="text" id="altezza"
+                                placeholder="ALTEZZA RETTANGOLO"
+                                onFocus="console.log('Sei entrato nella casella altezza')";
+                                onBlur="    if(this.value.length < 1)
+                                            {
+                                                alert('Hai inserito un valore non valido');
+                                                this.value = '1';
+                                            }
+                                            console.log('Altezza: this.value');
+                                            console.log('Hai lasciato la casella altezza');
+                                            ";   
+                                >
+
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                AREA
+                            </td>
+                            <td>
+                                <!-- Sono campi di sola lettura, dove
+                                 verrano visualizzati i risultati dei calcoli
+                                 readonly -> impedisce all'utente
+                                 di modificare manualmente i risultati -->
+                                <input type="text" id="area" readonly>
+                            </td>
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                PERIMETRO
+                            </td>
+                            <td>
+                                <input type="text" id="perimetro" readonly>
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                <!-- collego al bottone la funzione ''PULISCI'
+                                 che si attiva al click del bottone -->
+                                <input type="button" value="PULISCI"
+                                onclick="pulisci();"
+                                >
+
+                            </td>
+
+                            <td>
+                                <input type="button" value="CALCOLA"
+                                onClick="
+                                
+                                    var baseNumero = parseFloat(base.value);
+                                    var altezzaNumero = parseFloat(altezza.value);
+                                    var areaRettangolo = baseNumero * altezzaNumero;
+                                    var perimetroRettangolo = (baseNumero + altezzaNumero) * 2;
+                                    area.value = areaRettangolo;
+                                    perimetro.value = perimetroRettangolo;
+                                    console.log(area);
+                                    console.log(area.value);
+                                    console.log('Area: ' + areaRettangolo);
+                                    console.log('Perimetro: ' + perimetroRettangolo);
+                                " 
+                            >
+                            </td>
+
+                            <td>
+                                <input type="button" value="FUNZIONE CALCOLA"
+                                onClick="calcoloPerimetro();" 
+                                >
+                            </td>
+
+                        </tr>
+                    </table>
+
+
+
+                </form>
+                
+
+
+
+            </body>
+
+<!-- Il tag script in HTML viene utilizzato per includere
+ codice JS in una pagina web -->
+ <!-- Si può inserire del codice js all'interno dell' head
+  per funzioni globali, ma puù rallentare il caricamento della pagina
+  E consigliato inserire gli script alla fine del tag 'body'
+  perchè permette alla pagina di caricarsi prima di eseguire gli script -->
+            <script>
+
+                function pulisci()
+                {
+                    base.value = "";
+                    altezza.value = "";
+                    area.value = 0;
+                    perimetro.value = 0;
+                    console.log("Tutto pulito"); 
+                }
+
+
+                function calcoloPerimetro()
+                {
+                    var baseN = parseInt(base.value);
+                    var altezzaN = parseInt(altezza.value);
+                    var duePN = (baseN + altezzaN) * 2;
+                    perimetro.value = duePN;
+                    console.log("calcolaPerimetro(): " + duePN);
+                }
+
+
+                function caricamentoCompletato()
+                {
+                    console.log("Se leggi questo messaggio significa che la pagina è stata corretamente caricata.")
+                }
+                caricamentoCompletato();
+
+
+            </script>
+
+
+        </hmtl>
